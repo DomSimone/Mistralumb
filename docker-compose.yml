@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: umbuzo-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - umbuzo_data:/app/data
+      - ./umbuzo_conversation.json:/app/umbuzo_conversation.json
+      - ./mistral_model_adapter:/app/mistral_model_adapter
+    environment:
+      - PYTHONUNBUFFERED=1
+      - ENVIRONMENT=production
+      - FRONTEND_URL=https://dingy-choking-dutiful.ngrok-free.dev
+    restart: unless-stopped
+    networks:
+      - umbuzo-network
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    container_name: umbuzo-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    environment:
+      - API_BASE_URL=https://dingy-choking-dutiful.ngrok-free.dev
+    restart: unless-stopped
+    networks:
+      - umbuzo-network
+
+networks:
+  umbuzo-network:
+    driver: bridge
+
+volumes:
+  umbuzo_data:
+    driver: local

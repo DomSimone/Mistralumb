@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  mistral:
+    build:
+      context: .
+      dockerfile: Dockerfile.mistral
+    container_name: umbuzo-mistral
+    ports:
+      - "8000:8000"
+      - "8080:80"
+    volumes:
+      - mistral_data:/app/data
+      - ./umbuzo_conversation.json:/app/umbuzo_conversation.json
+      - ./mistral_model_adapter:/app/mistral_model_adapter
+    environment:
+      - PYTHONUNBUFFERED=1
+      - ENVIRONMENT=production
+      - API_BASE_URL=http://localhost:8000
+      - FRONTEND_URL=http://localhost:8080
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+volumes:
+  mistral_data:
+    driver: local

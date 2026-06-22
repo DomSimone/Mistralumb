@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  umbuzo-training:
+    build:
+      context: .
+      dockerfile: Dockerfile.training
+    volumes:
+      - ./umbuzo_fine_tuned:/app/umbuzo_fine_tuned
+      - ./umbuzo_training_data.jsonl:/app/umbuzo_training_data.jsonl
+    environment:
+      - HF_TOKEN=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
+      - HUGGINGFACE_HUB_TOKEN=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
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

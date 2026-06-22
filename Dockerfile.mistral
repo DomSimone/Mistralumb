@@ -1,0 +1,42 @@
+FROM python:3.11-slim-bullseye
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    g++ \
+    build-essential \
+    libffi-dev \
+    libssl-dev \
+    python3-pip \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements
+COPY requirements.txt .
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir --prefer-binary -r requirements.txt
+
+# Copy all application files to root directory
+COPY fastapi_server.py .
+COPY umbuzo_chatbot.py .
+COPY rag_system.py .
+COPY country_vectorizer.py .
+COPY open_source_retrieval.py .
+COPY cdx_african_content.py .
+COPY data_generator.py .
+COPY run_server.py .
+COPY Mbuzo_Logo.png .
+COPY umbuzo_conversation.json .
+COPY frontend/ ./frontend/
+
+# Expose ports
+EXPOSE 8000 8080
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD python3 -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')" || exit 1
+
+# Default command - runs the FastAPI server
+CMD ["uvicorn", "fastapi_server:app", "--host", "0.0.0.0", "--port", "8000", "--log-level", "info"]

@@ -1,0 +1,24 @@
+FROM pytorch/pytorch:2.0.1-cuda11.8-cudnn8-runtime
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements and install Python dependencies
+COPY requirements_training.txt .
+RUN pip install --no-cache-dir -r requirements_training.txt
+
+# Copy training code
+COPY . .
+
+# Set environment variables
+ENV HF_TOKEN=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
+ENV HUGGINGFACE_HUB_TOKEN=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
+
+# Run training
+CMD ["python", "umbuzo_fine_tune.py"]

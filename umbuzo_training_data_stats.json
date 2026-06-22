@@ -1,0 +1,34 @@
+{
+  "total_samples": 17000,
+  "topic_distribution": {
+    "economic_labor": 4196,
+    "demographic_trends": 4241,
+    "political_civic": 4357,
+    "urban_community": 4206
+  },
+  "country_distribution": {
+    "uganda": 1695,
+    "algeria": 1685,
+    "nigeria": 1675,
+    "egypt": 1721,
+    "south_africa": 1676,
+    "tanzania": 1656,
+    "ethiopia": 1756,
+    "morocco": 1708,
+    "ghana": 1737,
+    "kenya": 1691
+  },
+  "question_type_distribution": {
+    "predictive": 2349,
+    "analytical": 2314,
+    "factual": 2337,
+    "complex_reasoning": 10000
+  },
+  "region_distribution": {
+    "East Africa": 6798,
+    "North Africa": 5114,
+    "West Africa": 3412,
+    "Southern Africa": 1676
+  },
+  "generated_at": "2026-01-24T04:20:28.220911"
+}
