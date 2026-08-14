@@ -35,7 +35,7 @@ COPY Mbuzo_Logo.png .
 COPY umbuzo_conversation.json .
 
 # Copy the frontend directory
-COPY mkdir -p /frontend/
+COPY frontend .frontend/
 
 # Create directory for model adapter (to be mounted as volume at runtime)
 RUN mkdir -p /app/mistral_model_adapter
