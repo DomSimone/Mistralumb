@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apps & Tools - Umbuzo</title>
+    <link rel="icon" type="image/png" href="Mbuzo.png">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="nav-logo-link">
+                    <img src="Mbuzo.png" alt="Umbuzo" class="nav-logo">
+                    <span class="nav-brand">Umbuzo</span>
+                </a>
+            </div>
+            <div class="nav-center">
+                <a href="index.html" class="nav-link">Chat</a>
+                <a href="history.html" class="nav-link">History</a>
+                <a href="apps.html" class="nav-link active">Apps</a>
+            </div>
+            <div class="nav-right">
+                <button class="btn-signin" onclick="window.location.href='signin.html'">Sign In</button>
+                <button class="btn-signup" onclick="window.location.href='signup.html'">Sign Up</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="apps-main">
+        <div class="apps-container">
+            <div class="apps-header">
+                <h1>Apps & Tools</h1>
+                <p class="apps-subtitle">Access specialized tools and integrations</p>
+            </div>
+
+            <div class="apps-grid">
+                <!-- Report Generator -->
+                <div class="app-card" data-app="report">
+                    <div class="app-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Report Generator</h3>
+                    <p>Generate comprehensive reports on African topics with data visualization</p>
+                    <button class="app-btn" onclick="openApp('report')">Open</button>
+                </div>
+
+                <!-- Image Generator -->
+                <div class="app-card" data-app="image">
+                    <div class="app-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                            <polyline points="21 15 16 10 5 21"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Image Generator</h3>
+                    <p>Create AI-powered images from text descriptions</p>
+                    <button class="app-btn" onclick="openApp('image')">Open</button>
+                </div>
+
+                <!-- Data Analyzer -->
+                <div class="app-card" data-app="analyzer">
+                    <div class="app-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="20" x2="18" y2="10"></line>
+                            <line x1="12" y1="20" x2="12" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="14"></line>
+                        </svg>
+                    </div>
+                    <h3>Data Analyzer</h3>
+                    <p>Statistical analysis, correlation, and regression tools</p>
+                    <button class="app-btn" onclick="openApp('analyzer')">Open</button>
+                </div>
+
+                <!-- Math Calculator -->
+                <div class="app-card" data-app="math">
+                    <div class="app-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="18" rx="2"></rect>
+                            <line x1="8" y1="9" x2="16" y2="9"></line>
+                            <line x1="8" y1="15" x2="16" y2="15"></line>
+                            <line x1="12" y1="3" x2="12" y2="21"></line>
+                        </svg>
+                    </div>
+                    <h3>Math Calculator</h3>
+                    <p>Complex calculus, solving equations, and symbolic math</p>
+                    <button class="app-btn" onclick="openApp('math')">Open</button>
+                </div>
+
+                <!-- Visualization Tool -->
+                <div class="app-card" data-app="visualize">
+                    <div class="app-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                    </div>
+                    <h3>Data Visualization</h3>
+                    <p>Create charts and graphs from your data</p>
+                    <button class="app-btn" onclick="openApp('visualize')">Open</button>
+                </div>
+
+                <!-- Country Insights -->
+                <div class="app-card" data-app="country">
+                    <div class="app-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                    </div>
+                    <h3>Country Insights</h3>
+                    <p>Get detailed information about African countries</p>
+                    <button class="app-btn" onclick="openApp('country')">Open</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- App Modal -->
+    <div class="app-modal" id="appModal" style="display: none;">
+        <div class="app-modal-content">
+            <button class="app-modal-close" onclick="closeApp()">&times;</button>
+            <div id="appModalBody">
+                <!-- App content loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="config.js"></script>
+    <script src="apps.js"></script>
+</body>
+</html>
